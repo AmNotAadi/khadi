@@ -1,0 +1,106 @@
+:root{--brand:#d66a6a;--brand-ink:#1b1b1b;--accent:#f3b8c6;--text:#2a2a2a;--muted:#6c757d;--bg:#fffff7;--soft:#fff7f8;--ivory:#fffff0;--pink:#ffdce6;--red:#e85a70}
+body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji";color:var(--text);background:var(--bg)}
+.brand{font-family:"Playfair Display",serif;letter-spacing:.5px;color:var(--brand-ink)}
+/* Typography system */
+h1,h2,h3,h4,.section-title{font-family:"Playfair Display",serif}
+.lead,.testimonial p,.card .text-muted,.story p,.category-name{font-family:"Cormorant Garamond",serif}
+.navbar,.btn,.card-title,input,textarea{font-family:Inter,system-ui}
+.navbar{backdrop-filter:saturate(180%) blur(8px);background:var(--ivory)!important;border-bottom:1px solid rgba(0,0,0,.05)}
+.navbar .nav-link{position:relative}
+.navbar .nav-link:after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--brand);transform:scaleX(0);transform-origin:left;transition:transform .2s ease}
+.navbar .nav-link:hover:after,.navbar .nav-link:focus:after{transform:scaleX(1)}
+.hero{background:linear-gradient(180deg,var(--pink),transparent);padding:72px 0}
+.gradient-blob{position:absolute;right:-10%;top:-20%;width:520px;height:520px;background:radial-gradient(closest-side,rgba(215,185,168,.45),transparent);filter:blur(10px);pointer-events:none}
+.hero .btn{border-radius:999px;padding:.7rem 1.25rem}
+.hero-img img{object-fit:cover;border-radius:16px;box-shadow:0 12px 30px rgba(0,0,0,.08)}
+.hero h1.text-gradient{background:linear-gradient(90deg,var(--brand) 0%, #ff8aa1 50%, var(--red) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.section-title{font-family:"Playfair Display",serif}
+.product-card{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease; border:1px solid rgba(255,255,255,.45);background:rgba(255,255,255,.55);backdrop-filter:blur(10px);border-radius:16px;box-shadow:0 4px 14px rgba(0,0,0,.06)}
+.product-card:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 16px 34px rgba(0,0,0,.14), 0 0 0 2px rgba(243,184,198,.35) inset;border-color:rgba(243,184,198,.8)}
+.product-card img{object-fit:cover;height:200px;border-top-left-radius:12px;border-top-right-radius:12px}
+.product-card .text-muted{color:#4a4a4a!important;font-size:.95rem;line-height:1.45}
+.product-card .product-size{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:.85rem;color:var(--brand-ink);margin-left:6px;opacity:.9}
+.category-tile{display:block;text-align:center;text-decoration:none}
+.category-img img{object-fit:cover;border-radius:12px;box-shadow:0 6px 16px rgba(0,0,0,.06)}
+.category-tile{transition:transform .25s ease, box-shadow .25s ease}
+.category-tile:hover{transform:translateY(-6px) scale(1.02)}
+.category-tile .category-img{border-radius:14px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.45);backdrop-filter:blur(8px)}
+.category-tile:hover .category-img img{box-shadow:0 18px 38px rgba(0,0,0,.16)}
+.category-tile:hover .category-img{box-shadow:0 0 0 2px rgba(243,184,198,.45) inset}
+.category-name{margin-top:10px;font-weight:600;color:var(--brand-ink)}
+.testimonial{padding:12px 0;border-left:3px solid var(--red);padding-left:12px;background:linear-gradient(90deg,rgba(232,90,112,.08),transparent)}
+.cart-thumb{width:48px;height:48px;object-fit:cover;border-radius:8px;margin-right:8px;box-shadow:0 4px 10px rgba(0,0,0,.08)}
+
+/* Buttons themed */
+.btn-dark{background:var(--brand);border-color:var(--brand)}
+.btn-dark:hover{background:#c45353;border-color:#c45353}
+.btn-outline-dark{color:var(--brand-ink);border-color:var(--brand-ink)}
+.btn-outline-dark:hover{background:var(--brand-ink);color:#fff}
+
+/* Links and badges */
+a{color:var(--brand-ink)}
+a:hover{color:#000}
+[data-cart-count]{background:var(--accent)!important}
+
+/* Cards */
+.card{border-radius:14px}
+.card.shadow-sm{box-shadow:0 8px 22px rgba(0,0,0,.06)!important}
+.glass{background:rgba(255,255,255,.5);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.4)}
+.glass-border{border:1px solid rgba(255,255,255,.6)!important}
+
+/* Shop header */
+.shop-header{background:linear-gradient(180deg,rgba(255,220,230,.6),transparent);padding:24px 0;margin-bottom:8px;border-radius:12px}
+
+/* Story section */
+.story{background:linear-gradient(180deg,var(--ivory),transparent)}
+.icon-badge{width:42px;height:42px;border-radius:999px;background:var(--pink);display:inline-flex;align-items:center;justify-content:center;color:var(--red);box-shadow:0 6px 16px rgba(232,90,112,.15)}
+
+/* Sticky nav shadow */
+.navbar.scrolled{box-shadow:0 6px 16px rgba(0,0,0,.06)}
+
+/* Back to top */
+#backToTop{position:fixed;right:16px;bottom:16px;opacity:0;transform:translateY(10px);transition:all .2s ease}
+#backToTop.show{opacity:1;transform:none}
+
+/* Event banner - bold visual */
+.event-banner{position:relative;overflow:hidden;border-radius:18px;background:linear-gradient(135deg,#ffe3eb 0%,#fff6f0 40%, #ffd1dc 100%);box-shadow:0 18px 40px rgba(232,90,112,.18)}
+.event-banner .shine{position:absolute;inset:-50%;background:conic-gradient(from 180deg at 50% 50%,rgba(255,255,255,.0),rgba(255,255,255,.35),rgba(255,255,255,.0));animation:spin 8s linear infinite;mix-blend-mode:overlay}
+.event-banner .content{position:relative}
+.event-badge{display:inline-block;background:var(--red);color:#fff;padding:.4rem .75rem;border-radius:999px;font-weight:700;letter-spacing:.5px;box-shadow:0 8px 18px rgba(232,90,112,.3)}
+.countdown{display:flex;gap:10px;font-variant-numeric:tabular-nums}
+.countdown .box{background:#fff;border-radius:10px;padding:.5rem .7rem;min-width:58px;text-align:center;box-shadow:0 8px 18px rgba(0,0,0,.06)}
+.ribbon{position:absolute;top:16px;right:-40px;transform:rotate(20deg);background:var(--brand);color:#fff;padding:.4rem 2rem;font-weight:700;box-shadow:0 8px 18px rgba(214,106,106,.35)}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Reveal animations */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .5s ease, transform .5s ease}
+.reveal.show{opacity:1;transform:none}
+
+/* Marquee */
+.marquee{overflow:hidden;position:relative}
+.marquee-track{display:flex;gap:24px;min-width:200%;animation:scrollX 18s linear infinite}
+.marquee .quote{min-width:40%;}
+@keyframes scrollX{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* Floating decorative shapes */
+.float{position:absolute;opacity:.5;filter:blur(1px)}
+.float.one{width:140px;height:140px;border-radius:50%;background:radial-gradient(circle at 30% 30%, #ffd1dc, transparent 60%);top:10%;right:5%}
+.float.two{width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 70% 70%, #ffe8ef, transparent 60%);bottom:5%;left:8%}
+
+/* Ripple effect */
+.ripple-effect{position:absolute;border-radius:50%;background:rgba(255,255,255,.5);transform:scale(0);animation:ripple .6s ease-out}
+@keyframes ripple{to{transform:scale(2.5);opacity:0}}
+
+/* Mobile optimizations */
+@media (max-width: 767.98px){
+  .hero{padding:48px 0}
+  .hero .btn{padding:.6rem 1rem}
+  .brand{font-size:1.1rem}
+  .product-card img{height:160px}
+  .product-card .text-muted{font-size:.9rem}
+  .section-title{font-size:1.5rem}
+  .shop-header{padding:16px}
+  .event-banner{padding:18px!important}
+  .countdown .box{min-width:52px;padding:.4rem .55rem}
+  .marquee .quote{min-width:70%}
+}

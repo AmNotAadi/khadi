@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shop - Khadi Beauty</title>
+  <link href="/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/css/styles.css" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light border-bottom sticky-top py-2">
+    <div class="container">
+      <a class="navbar-brand fw-bold brand d-flex align-items-center gap-2" href="/">
+        <img src="/assets/img/logo.png" alt="Khadi Beauty" height="36">
+        Khadi Beauty
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+          <li class="nav-item"><a class="nav-link active" href="/shop.html">Shop</a></li>
+          <li class="nav-item ms-lg-3">
+            <a class="btn btn-dark position-relative" href="/cart.html">
+              Cart <span class="badge bg-light text-dark ms-1" data-cart-count>0</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="py-4">
+    <div class="container">
+      <div class="shop-header rounded-3 px-3 py-3 mb-3 d-flex flex-wrap align-items-center justify-content-between">
+        <h5 class="m-0">Browse our collection</h5>
+        <div class="text-muted small">Free shipping over ₹999</div>
+      </div>
+      <div class="mb-3">
+        <input id="shop-search" class="form-control" placeholder="Search products...">
+      </div>
+      <div class="d-flex flex-wrap align-items-center mb-3" id="category-tabs"></div>
+      <div id="shop-grid" class="row"></div>
+    </div>
+  </main>
+
+  <footer class="py-4 border-top bg-white text-center text-muted small">
+    <div class="container">© <span id="year"></span> Khadi Skin Care</div>
+  </footer>
+
+  <script src="/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module">
+    import { initShop } from '/assets/js/app.js';
+    document.getElementById('year').textContent = new Date().getFullYear();
+    initShop();
+  </script>
+</body>
+</html>
