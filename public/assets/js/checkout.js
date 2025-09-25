@@ -25,20 +25,29 @@ export function openWhatsAppWithOrder(customer, businessNumber) {
 }
 
 export async function saveOrder(customer) {
+  // For static hosting, we'll just save to localStorage
   const items = loadCart();
   const totals = getTotals();
+  const order = {
+    id: Date.now(),
+    customer,
+    items,
+    totals,
+    timestamp: new Date().toISOString()
+  };
+  
   try {
-    const res = await fetch('/api/orders', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ customer, items, totals })
-    });
-    if (!res.ok) throw new Error('Failed to save order');
-    return await res.json();
+    // Save to localStorage for offline persistence
+    const existingOrders = JSON.parse(localStorage.getItem('khadi_orders') || '[]');
+    existingOrders.push(order);
+    localStorage.setItem('khadi_orders', JSON.stringify(existingOrders));
+    
+    // Also save to sessionStorage for current session
+    sessionStorage.setItem('last_order', JSON.stringify(order));
+    
+    return order;
   } catch (e) {
-    // swallow to not block checkout; log for debugging
-    // eslint-disable-next-line no-console
-    console.error(e);
+    console.error('Failed to save order locally:', e);
     return null;
   }
 }
