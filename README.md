@@ -1,15 +1,28 @@
-# Khadi Beauty - Skin & Haircare Products
+# Khadi Beauty - Premium Organic Skincare & Haircare Products
 
-A beautiful, responsive e-commerce website for organic skincare products.
+A beautiful, responsive e-commerce website for premium organic skincare and haircare products. Built with modern web technologies and optimized for search engines.
 
 ## Features
 
+### 🛍️ **E-commerce Functionality**
 - **Responsive Design**: Works perfectly on desktop, tablet, and mobile
-- **Product Catalog**: Soaps, D-Tan Scrubs, Night Creams, Face Oils & Serums, Lip Love, Body Lotions & Face Creams
+- **Product Catalog**: 30+ organic skincare products across 6 categories
 - **Shopping Cart**: Add products to cart with localStorage persistence
 - **WhatsApp Integration**: Direct checkout via WhatsApp with pre-filled messages
-- **Modern UI**: Glassy cards, animations, and premium design
-- **SEO Optimized**: Meta tags, favicon, and semantic HTML
+- **Search & Filter**: Find products quickly with real-time search
+
+### 🎨 **Modern UI/UX**
+- **Glassy Cards**: Premium glass-morphism design elements
+- **Smooth Animations**: Scroll-reveal, hover effects, and transitions
+- **Interactive Elements**: Ripple effects, parallax scrolling, countdown timers
+- **Mobile Optimized**: Touch-friendly interface with responsive breakpoints
+
+### 🔍 **SEO Optimization**
+- **Comprehensive Meta Tags**: Title, description, keywords, Open Graph, Twitter Cards
+- **Structured Data**: JSON-LD schema markup for Organization, WebSite, and Products
+- **Semantic HTML**: Proper heading hierarchy, ARIA labels, and accessibility
+- **Sitemap & Robots.txt**: Search engine crawling optimization
+- **Performance**: Preconnect links, optimized images, and fast loading
 
 ## Tech Stack
 
