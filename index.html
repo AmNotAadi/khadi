@@ -42,7 +42,7 @@
   <link rel="canonical" href="https://khadibeauty.in/">
   
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
   
   <!-- Preconnect for Performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,6 +51,7 @@
   
   <!-- Stylesheets -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
   
@@ -305,8 +306,10 @@
   <script src="assets/js/cart.js"></script>
   <script src="assets/js/app.js"></script>
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    initHome();
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('year').textContent = new Date().getFullYear();
+      initHome();
+    });
   </script>
 </body>
 </html>
