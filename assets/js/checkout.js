@@ -1,6 +1,4 @@
-import { loadCart, getTotals } from './cart.js';
-
-export function buildWhatsAppMessage(customer) {
+function buildWhatsAppMessage(customer) {
   const items = loadCart();
   const lines = [];
   lines.push('*New Order / Price Inquiry - Khadi Skin Care*');
@@ -16,7 +14,7 @@ export function buildWhatsAppMessage(customer) {
   return lines.join('\n');
 }
 
-export function openWhatsAppWithOrder(customer, businessNumber) {
+function openWhatsAppWithOrder(customer, businessNumber) {
   const message = buildWhatsAppMessage(customer);
   const encoded = encodeURIComponent(message);
   const phoneDigits = (businessNumber || '').replace(/\D/g, '');
@@ -24,7 +22,7 @@ export function openWhatsAppWithOrder(customer, businessNumber) {
   window.open(url, '_blank');
 }
 
-export async function saveOrder(customer) {
+async function saveOrder(customer) {
   // For static hosting, we'll just save to localStorage
   const items = loadCart();
   const totals = getTotals();
@@ -51,4 +49,9 @@ export async function saveOrder(customer) {
     return null;
   }
 }
+
+// Make functions global for compatibility
+window.buildWhatsAppMessage = buildWhatsAppMessage;
+window.openWhatsAppWithOrder = openWhatsAppWithOrder;
+window.saveOrder = saveOrder;
 

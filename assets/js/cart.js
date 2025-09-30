@@ -1,6 +1,6 @@
 const CART_KEY = 'khadi_cart_v1';
 
-export function loadCart() {
+function loadCart() {
   try {
     return JSON.parse(localStorage.getItem(CART_KEY) || '[]');
   } catch {
@@ -8,11 +8,11 @@ export function loadCart() {
   }
 }
 
-export function saveCart(items) {
+function saveCart(items) {
   localStorage.setItem(CART_KEY, JSON.stringify(items));
 }
 
-export function addToCart(product, qty = 1) {
+function addToCart(product, qty = 1) {
   const cart = loadCart();
   const existing = cart.find(i => i.id === product.id);
   if (existing) {
@@ -23,12 +23,12 @@ export function addToCart(product, qty = 1) {
   saveCart(cart);
 }
 
-export function removeFromCart(productId) {
+function removeFromCart(productId) {
   const cart = loadCart().filter(i => i.id !== productId);
   saveCart(cart);
 }
 
-export function updateQty(productId, qty) {
+function updateQty(productId, qty) {
   const cart = loadCart();
   const item = cart.find(i => i.id === productId);
   if (item) {
@@ -37,8 +37,16 @@ export function updateQty(productId, qty) {
   }
 }
 
-export function getTotals() {
+function getTotals() {
   const cart = loadCart();
   return { subtotal: 0, shipping: 0, total: 0, count: cart.reduce((n,i)=>n+i.qty,0) };
 }
+
+// Make functions global for compatibility
+window.loadCart = loadCart;
+window.saveCart = saveCart;
+window.addToCart = addToCart;
+window.removeFromCart = removeFromCart;
+window.updateQty = updateQty;
+window.getTotals = getTotals;
 

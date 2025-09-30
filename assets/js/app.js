@@ -1,12 +1,9 @@
-import { PRODUCTS, CATEGORIES, getFeaturedProducts } from './products.js';
-import { addToCart, loadCart, getTotals } from './cart.js';
-
 // UI helpers
-export function formatINR(amount) {
+function formatINR(amount) {
   return `₹${amount.toLocaleString('en-IN')}`;
 }
 
-export function renderCartCount() {
+function renderCartCount() {
   const count = loadCart().reduce((n, i) => n + i.qty, 0);
   document.querySelectorAll('[data-cart-count]').forEach(el => {
     el.textContent = String(count);
@@ -15,7 +12,7 @@ export function renderCartCount() {
 
 // Toast notifications
 let toastContainer;
-export function showToast(message) {
+function showToast(message) {
   if (!toastContainer) {
     toastContainer = document.createElement('div');
     toastContainer.className = 'toast-container position-fixed bottom-0 end-0 p-3';
@@ -33,18 +30,34 @@ export function showToast(message) {
   wrapper.addEventListener('hidden.bs.toast', () => wrapper.remove());
 }
 
-export function renderProductCard(product) {
+function renderProductCard(product) {
   const div = document.createElement('div');
   div.className = 'col-6 col-md-4 col-lg-3 mb-4';
+  
+  // Determine badge based on product
+  let badge = '';
+  if (product.id.includes('vitc') || product.id.includes('retinol')) {
+    badge = '<span class="product-badge new">New</span>';
+  } else if (product.id.includes('charcoal') || product.id.includes('goldpearl')) {
+    badge = '<span class="product-badge popular">Popular</span>';
+  }
+  
   div.innerHTML = `
     <div class="card h-100 shadow-sm product-card">
-      <img src="${product.img}" class="card-img-top" alt="${product.title}">
+      <div class="product-img-container position-relative">
+        <img src="${product.img}" class="card-img-top" alt="${product.title}">
+        ${badge}
+      </div>
       <div class="card-body d-flex flex-column">
-        <h6 class="card-title mb-1">${product.title}${product.category==='soaps' ? ' <span class="product-size">80g | 100g</span>' : ''}</h6>
+        <h6 class="card-title mb-2">${product.title}${product.category==='soaps' ? ' <span class="product-size">80g | 100g</span>' : ''}</h6>
         <p class="text-muted small flex-grow-1">${product.desc}</p>
         <div class="d-flex gap-2 mt-auto">
-          <button class="btn btn-sm btn-dark flex-grow-1" data-add-to-cart="${product.id}">Add to cart</button>
-          <button class="btn btn-sm btn-outline-dark" title="Quick view" data-quick-view="${product.id}">i</button>
+          <button class="btn btn-sm btn-dark flex-grow-1" data-add-to-cart="${product.id}">
+            <span>Add to cart</span>
+          </button>
+          <button class="btn btn-sm btn-outline-dark" title="Quick view" data-quick-view="${product.id}">
+            <i class="bi bi-eye"></i>
+          </button>
         </div>
       </div>
     </div>`;
@@ -91,7 +104,7 @@ function ensureAddToCartHandler() {
 }
 
 // Home page scripts
-export function initHome() {
+function initHome() {
   renderCartCount();
   // Sticky nav shadow
   const nav = document.querySelector('.navbar');
@@ -150,7 +163,7 @@ export function initHome() {
     setInterval(tick, 1000);
   }
 
-  const featured = getFeaturedProducts(8);
+  const featured = getFeaturedProducts(6);
   const container = document.querySelector('#featured-grid');
   if (container) {
     featured.forEach(p => container.appendChild(renderProductCard(p)));
@@ -162,7 +175,7 @@ export function initHome() {
     CATEGORIES.forEach(cat => {
       const a = document.createElement('a');
       a.className = 'col-6 col-md-4 col-lg-2 text-decoration-none';
-      a.href = `/shop.html#${cat.id}`;
+      a.href = `shop.html#${cat.id}`;
       a.innerHTML = `
         <div class="category-tile">
           <div class="ratio ratio-1x1 category-img bg-light">
@@ -176,7 +189,7 @@ export function initHome() {
 }
 
 // Shop page scripts
-export function initShop() {
+function initShop() {
   renderCartCount();
   // Sticky nav
   const nav = document.querySelector('.navbar');
@@ -237,7 +250,7 @@ export function initShop() {
 }
 
 // Cart page scripts
-export function initCartPage() {
+function initCartPage() {
   renderCartCount();
   const tbody = document.querySelector('#cart-body');
   const totalsEl = document.querySelector('#cart-totals');
@@ -266,14 +279,18 @@ export function initCartPage() {
     if (target.matches('[data-qty-id]')) {
       const id = target.getAttribute('data-qty-id');
       const val = parseInt(target.value || '1', 10);
-      import('./cart.js').then(m => m.updateQty(id, val)).then(draw);
+      updateQty(id, val);
+      draw();
     }
   });
   tbody.addEventListener('click', (e) => {
     const target = e.target;
     if (target.matches('[data-remove-id]')) {
       const id = target.getAttribute('data-remove-id');
-      import('./cart.js').then(m => m.removeFromCart(id)).then(() => { draw(); renderCartCount(); showToast('Removed from cart'); });
+      removeFromCart(id);
+      draw();
+      renderCartCount();
+      showToast('Removed from cart');
     }
   });
 }
@@ -317,4 +334,14 @@ function initReveal() {
   }, { threshold: 0.15 });
   elements.forEach(el => observer.observe(el));
 }
+
+
+// Make functions global for compatibility
+window.formatINR = formatINR;
+window.renderCartCount = renderCartCount;
+window.showToast = showToast;
+window.renderProductCard = renderProductCard;
+window.initHome = initHome;
+window.initShop = initShop;
+window.initCartPage = initCartPage;
 
